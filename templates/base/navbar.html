@@ -1,0 +1,57 @@
+{% load static %}
+{%load bootstrap5%}
+{%bootstrap_css%}
+{% load bootstrap_icons %}
+{% if user.is_anonymous %}
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="/">SIGEVI</a>
+</nav>
+{% else %}
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="/">SIGEVI</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Personas {% bs_icon 'person' %}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'personas:clienteIndex' %}">Listar Clientes {% bs_icon 'card-checklist' %}</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Listar Proveedores {% bs_icon 'card-checklist' %}</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Inventario {% bs_icon 'book' %}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Listar Categorías {% bs_icon 'card-checklist' %}</a></li>
+              <li><a class="dropdown-item" href="#">Agregar Categoría Nueva {% bs_icon 'clipboard-data' %}</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Listar Marcas {% bs_icon 'card-checklist' %}</a></li>
+              <li><a class="dropdown-item" href="#">Agregar Marca Nueva {% bs_icon 'clipboard-data' %}</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Listar Productos {% bs_icon 'card-checklist' %}</a></li>
+              <li><a class="dropdown-item" href="#">Agregar Producto Nuevo {% bs_icon 'clipboard-data' %}</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+        Sesión iniciada como {{user.username}}
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        
+        <li><a class="dropdown-item" type="button" href="/auth/logout">Cerrar Sesión{% bs_icon 'power' %}</a></li>
+      </ul>
+    </div>
+</nav>
+{% endif %}
+  
