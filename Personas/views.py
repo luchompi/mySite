@@ -20,8 +20,7 @@ class ClienteCreateView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     success_url = "."
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        consulta=self.request.GET.get('identificacion')
-        if consulta:
+        if consulta := self.request.GET.get('identificacion'):
             context["query"] = Cliente.objects.filter(iden__icontains=consulta)
         else:
             context["query"] = Cliente.objects.all()
